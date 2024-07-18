@@ -55,7 +55,7 @@
     <body>
         <div class="header-container">
             <div class="header-content">
-              <h1>Rethinking Video-Text Understanding: Retrieval from Counterfactually Augmented Data</h1>
+              <h1>Rethinking Video-Text Understanding:<br>Retrieval from Counterfactually Augmented Data</h1>
               <h3>ECCV 2024</h3>
               <p>
                 <a href="https://wufeim.github.io" target="_blank" style="text-decoration: none;">Wufei Ma<sup>1,2</sup></a> &emsp;
@@ -74,9 +74,9 @@
                 <a href="https://www.cs.jhu.edu/~ayuille/" target="_blank" style="text-decoration: none;"><sup>3</sup>Meta AI</a>
               </p>
               <div class="button-container">
-                <a href="https://arxiv.org/abs/2401.01702" class="button" target="_blank">arXiv</a>
-                <a href="https://youtu.be/qdk6sVr47MQ?si=5CFkkqVLhMb76guF" class="button" target="_blank">Video</a>
-                <a href="https://github.com/wufeim/feint6k" class="button" target="_blank">Data</a>
+                <a href="#" class="button" target="_blank">arXiv</a>
+                <a href="https://github.com/facebookresearch/feint6k" class="button" target="_blank">Data</a>
+                <!-- <a href="https://github.com/wufeim/feint6k" class="button" target="_blank">Data</a> -->
               </div>
             </div>
         </div>
@@ -87,25 +87,35 @@
                 <div><a href="#data">RCAD and Feint6K</a></div>
                 <div><a href="#key-findings">Key Findings</a></div>
                 <div><a href="#llm-teacher">LLM-Teacher</a></div>
-                <div><a href="#misc">Misc.</a></div>
+                <div><a href="#misc">Miscellaneous</a></div>
             </nav>
         </d-contents>
 
         <p style="text-align: justify;">
             We propose a novel evaluation task for video-text understanding, namely <em>retrieval from counterfactually augmented data</em> (RCAD), and a new <strong>Feint6K</strong> dataset, to better assess the capabilities of current video-text models and understand their limitations. To succeed on our new evaluation task, models must derive a comprehensive understanding of the video from cross-frame reasoning. Analyses show that previous video-text foundation models can be easily fooled by counterfactually augmented data and are far behind human-level performance. From our experiments on RCAD, we identify a key limitation of current contrastive approaches on video-text data and introduce <strong>LLM-teacher</strong>, a more effective approach to learn action semantics by leveraging knowledge obtained from a pretrained large language model.
         </p>
+        <p>
+            <d-figure>
+                <figure>
+                    <img src="assets/images/teaser.png" alt="Our RCAD" style="max-height: 360px; object-fit: contain;">
+                    <figcaption>
+                        <b>Figure 1.</b> Left: Failures of InternVideo <d-cite key="wang2022internvideo"></d-cite> on Feint6K. Right: Quantitative results on Feint6K.
+                    </figcaption>
+                </figure>
+            </d-figure>
+        </p>
 
         <section id="data">
             <h2 id="data">RCAD and Feint6K</h2>
             <p style="text-align: justify;">
-                Retrieval from counterfactually augmented data (RCAD) is a variant of the standard video-to-text retrieval. Given a video sequence and a list of candidate captions, the model is asked to retrieve the caption that best matches the semantics in the video.
+                Retrieval from counterfactually augmented data (RCAD) is a variant of the standard video-to-text retrieval. Given a video sequence and a list of candidate captions, the model needs to retrieve the caption that best matches the semantics in the video.
             </p>
             <p>
                 <d-figure>
                     <figure>
                         <img src="assets/images/ours_ret.png" alt="Our RCAD" style="max-height: 360px; object-fit: contain;">
                         <figcaption>
-                            Figure 1. Overview of our proposed <em>retrieval from counterfactually augmented data</em> (RCAD).
+                            <b>Figure 2.</b> Overview of our proposed <em>retrieval from counterfactually augmented data</em> (RCAD).
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -116,14 +126,14 @@
             </p>
             <h3 id="data-collection">Data Collection of Feint6K</h3>
             <p style="text-align: justify;">
-                We adopt a human-in-the-loop system <d-cite key="Kaushik2020Learning"></d-cite> to counterfactually manipulate the positive captions in existing video-text datasets. The generated counterfactually augmented data, when paired with the original videos, forms negative pairs to be used in our proposed task. We recruit 40 annotators to manually manipulate the actions in existing captions.
+                We adopt a human-in-the-loop system <d-cite key="Kaushik2020Learning"></d-cite> to counterfactually manipulate the positive captions in existing video-text datasets. The generated counterfactually augmented data, when paired with the original videos, form negative pairs to be used in our proposed task. We recruit 40 annotators to manually manipulate the actions in existing captions.
             </p>
             <p>
                 <d-figure>
                     <figure>
                         <img src="assets/images/human_in_the_loop.png" alt="Our human-in-the-loop system for data collection">
                         <figcaption>
-                            Figure 2. Our human-in-the-loop system for data collection
+                            <b>Figure 3.</b> Our human-in-the-loop system for data collection
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -133,7 +143,7 @@
                     <figure>
                         <img src="assets/images/eg_task.png" alt="Sample questions from Feint6K" style="max-height: 360px; object-fit: contain;">
                         <figcaption>
-                            Figure 3. Sample questions from our Feint6K dataset.
+                            <b>Figure 4.</b> Sample questions from our Feint6K dataset.
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -241,14 +251,14 @@
                         </tr>
                         <tr>
                             <td>LanguageBind <d-cite key="zhu2024languagebind"></d-cite></td>
-                            <td>37.5</td>
-                            <td>45.8</td>
-                            <td>63.6</td>
-                            <td>2.3</td>
-                            <td>76.9</td>
-                            <td>44.1</td>
-                            <td>63.9</td>
-                            <td>2.3</td>
+                            <td>42.8</td>
+                            <td>41.3</td>
+                            <td>77.0</td>
+                            <td>2.4</td>
+                            <td></td>
+                            <td>42.3</td>
+                            <td>77.0</td>
+                            <td>2.4</td>
                         </tr>
                         <tr>
                             <td><b><i>Finetuned</i></b></td>
@@ -285,7 +295,7 @@
                         </tr>
                         <tr>
                             <td>SimVTP <d-cite key="ma2022simvtp"></d-cite></td>
-                            <td class="highlight-green">50.2</td>
+                            <td">50.2</td>
                             <td>35.7</td>
                             <td>70.8</td>
                             <td>2.6</td>
@@ -300,7 +310,7 @@
                             <td class="highlight-green">58.6</td>
                             <td>80.2</td>
                             <td>1.8</td>
-                            <td class="highlight-green">87.9</td>
+                            <td>87.9</td>
                             <td class="highlight-green">58.2</td>
                             <td>76.9</td>
                             <td>1.9</td>
@@ -320,20 +330,20 @@
                     <figure>
                         <img src="assets/images/sensitive_ft1.png" alt="Sensitivity to changes of objects or actions" style="max-height: 280px; object-fit: contain;">
                         <figcaption>
-                            Figure 4. Changes in cosine similarities between textual and visual embeddings when objects or actions in captions are swapped.
+                            <b>Figure 5.</b> Changes in cosine similarities between textual and visual embeddings when objects or actions in captions are swapped.
                         </figcaption>
                     </figure>
                 </d-figure>
             </p>
             <p style="text-align: justify;">
-                <b>Shortcut learning in multi-modal pretraining.</b> We also study the changes in cosine similarities between textual embeddings. We find that textual encoders trained with multi-modal objectives (such as contrastive learning or masked modeling) are more sensitive to the changes in objects than to the changes in actions. This is not observed for textual encoders trained on texts only (such as LLaMA). We conjecture that objects serve as shortcuts in multi-modal pretraining, leading to a less effective representation for actions.
+                <b>Shortcut learning in multi-modal contrastive pretraining.</b> We also study the changes in cosine similarities between textual embeddings, using various textual encoders. We find that textual encoders trained with multi-modal contrastive learning are more sensitive to the changes in objects than to the changes in actions. This is not observed for textual encoders trained on texts only (such as LLaMA). We conjecture that objects act as shortcuts in multi-modal contrastive pretraining and hinder the model from learning an effective action representation.
             </p>
             <p>
                 <d-figure>
                     <figure>
-                        <img src="assets/images/rebuttal_textenc.png" alt="Sensitivity to changes of objects or actions">
+                        <img src="assets/images/compare_textenc.png" alt="Sensitivity to changes of objects or actions">
                         <figcaption>
-                            Figure 5. Changes in cosine similarities between textual embeddings before and after objects or actions are swapped.
+                            <b>Figure 6.</b> Changes in cosine similarities between textual embeddings before and after objects or actions are swapped.
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -391,11 +401,11 @@
                         </tr>
                         <tr>
                             <td>InternVideo <d-cite key="wang2022internvideo"></d-cite></td>
-                            <td class="highlight-green">49.1</td>
+                            <td>49.1</td>
                             <td>58.6</td>
                             <td>80.2</td>
                             <td>1.8</td>
-                            <td class="highlight-green">87.9</td>
+                            <td>87.9</td>
                             <td>58.2</td>
                             <td>76.9</td>
                             <td>1.9</td>
@@ -433,7 +443,7 @@
                     <figure>
                         <img src="assets/images/sensitive_ft2.png" alt="Sensitivity to changes of objects or actions" style="max-height: 280px; object-fit: contain;">
                         <figcaption>
-                            Figure 6. LLM-teacher learns a more effective representation for action semantics as compared to baseline models.
+                            <b>Figure 7.</b> LLM-teacher learns a more effective representation for action semantics as compared to baseline models.
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -442,6 +452,9 @@
 
         <section id="misc">
             <h2 id="misc">Miscellaneous</h2>
+            <p style="text-align: justify;">
+                The Feint6K dataset is currently under review and will be made publicly visible by July 24.
+            </p>
             <p style="text-align: justify;">
                 All data collection and experiments in this work were conducted at JHU.
             </p>
